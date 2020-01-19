@@ -7,9 +7,6 @@ app.set("nombre" , "NodeChat"); //nombre de la app, autoreferencia
 app.set("views" , __dirname + "/views"); //la carpeta de las vistas queda definida
 app.set("view engine" , "ejs"); // el render de vistas sera ejs
 
-// app.use(express.json) ; //para poarsear la data json
-// app.use(express.urlencoded()); // el body parser
-// app.use(express.json());       // el JSON parser
 app.use(express.static(__dirname+'/public')); // la ruta estatica publica de express
 
 //configuramos los aspectos de la sesion y lo usamos cmo servicio
@@ -21,7 +18,6 @@ app.use(session({
 
 var server    = require('http').createServer(app);  // create server for the app
 var io        = require('socket.io')(server);     // charge library on server
-
 
  var adminSocket = {};  // socket admin
  var userConectados = {}; /// users socket
@@ -52,9 +48,7 @@ app.get('/cliente', (req,res)=>{
       // nuevo usuario online
         socket.on("user-online", function(nombre){
            userConectados[nombre] = socket;  // parseamos
-           userConectados[nombre].nombre = nombre; // agregamos propiedad
-           
-           console.log('nuevo socket conectado con nombre : ' + nombre);
+           console.log('Nuw socket under name :: ' + nombre);
 
             // test
             switch(adminSocket) { // if error
@@ -83,10 +77,10 @@ app.get('/cliente', (req,res)=>{
 
  }); // fin del evento de conexxion
 
-//usamos la ruta de los socket depsues del manejdor de eventos
-// app.listen(3000);  // escuchamos el server de expres
+
+// launch server
 server.listen(3000, () => { console.log("Servidor cargada y listo!"); }); // inciamos
-/* esta es la parte del cleinte en javascript */
+
 
 
 
