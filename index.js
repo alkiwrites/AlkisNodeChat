@@ -26,7 +26,7 @@ app.get('/panel', (req,res)=>{
     res.render( 'panel.ejs');
 });
 
-app.get('/cliente', (req,res)=>{
+app.get('/', (req,res)=>{
    res.render('visitor.ejs');
 });
 
